@@ -1,26 +1,28 @@
 REP 3 — APPROVAL GATE
 
 Prediction before execution
-
-I expect kubectl delete pvc data-var to be blocked with exit code 2, while the
-read-only du command should be allowed with exit code 0. I expect the blocked
-command to run only when the exact approval token is supplied.
+The kubectl delete pvc data-var command was supposed to be blocked when it's executed with a file named data-var.I would have hoped kubectl delete pvc data-var would have exited with code 2 when it's called with the file data-var.
+The "read-only" du command should exit with 0. I thought that this destructive
+Only be allowed to test if the approval token supplied is the same.
 
 Actual results
-
 Destructive command:
-[PASTE output/rep3-gate-blocked.txt]
+BLOCKED: 'kubectl delete pvc data-var' requires explicit human approval.
+exit=2
 
 Read-only command:
-[PASTE output/rep3-gate-readonly.txt]
+exit=0
 
-Approved destructive command:
-[PASTE output/rep3-gate-approved.txt]
+Approved destructive test:
+exit=0
 
-Reflection draft — paraphrase this
+Audit evidence:
+2026-08-06T15:14:56Z BLOCK(needs-human) :: kubectl delete pvc data-var
+2026-08-06T15:14:56Z ALLOW(policy-safe) :: du -x -d1 /var
+2026-08-06T15:14:56Z ALLOW(approved) :: kubectl delete pvc data-var
 
-The required HUMAN_APPROVAL_TOKEN value is I-APPROVE. Keeping the destructive
-pattern and requiring a separate approval token is safer than deleting the
-pattern because the default remains deny-by-default; the exception is explicit,
-auditable, and limited to the approved execution rather than permanently
-weakening the policy.
+Reflection
+The HUMAN_APPROVAL_TOKEN to change the block to an allow is I-APPROVE. Keeping
+The destructive policy in place and needing a separate approval token is better than
+excluding the exception, as it is explicitly listed, and default block is still there.
+and auditable.

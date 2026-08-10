@@ -1,20 +1,18 @@
 REP 1 — MCP CONSENT PROMPT
 
 Prediction before execution
-
-I expect the host/client to list one read-only tool named get_disk_usage and to
-pause for my consent before invoking it. If I deny consent, the tool should not
-run.
+I was expecting that the host/client would wait to return a single Tool that was read-only called get_disk_usage.
+Before invoking, it requires the consent of man. If the user does not allow it to execute, the Tool should not execute.
 
 Actual observation
 
-[PASTE THE IMPORTANT LINES FROM output/rep1-mcp-consent.txt AFTER RUNNING IT.]
+The following tools and resources were provided to the client: TOOLS: ['get_disk_usage'] RESOURCES: ['file://incident-log/'].
+A prompt was presented before CallToolRequest and only the Tool ran when a YES was presented.
+provided. The total value of the root-filesystem as measured was total=47,321,268,224 bytes,
+used=28,767,379,456 bytes, free=18,537,111,552 bytes, and used_pct=60.8.
 
-Reflection draft — paraphrase this
-
-The MCP tools guidance says a human should remain able to deny tool
-invocations, and clients should request confirmation for sensitive operations.
-The consent prompt is implemented by the host before it calls get_disk_usage.
-Tool descriptions and annotations from an untrusted server are treated as
-untrusted because a malicious description could contain prompt-injection text
-intended to influence the model or the user.
+Reflection
+In this example, the human-in-the-loop (HIL) restriction of the MCP is maintained, by allowing the user to approve.
+Prevent the execution of a Tool prior to its execution. Molded and scored tool description and annotation from an
+The untrusted server must also be considered to be an untrusted input as well because malicious metadata.
+May include prompt-injection language to form a suggestion to the model or the operator.

@@ -1,108 +1,46 @@
 Project 15 — AIOps and Autonomous Operations: How Much May We Entrust?
 
-Student:
-Mohammed Imad Uddin
-
-Student ID:
-F00611260
-
-Course:
-CSC 6400 — System Administration and Maintenance (DCA)
-
-Tier:
-Normal
+Student: Mohammed Imad Uddin
+Student ID: F00611260
+Course: CSC 6400 — System Administration and Maintenance (DCA)
 
 PURPOSE
-
-This repository contains all eleven Project 15 reps and the required
-governance policy. It demonstrates a read-only MCP server, explicit Tool
-consent, a human approval gate, action-specific autonomy tiers, a sandboxed
-prompt-injection demonstration, gated and ungated self-healing loops, an audit
-log, and human accountability.
+All eleven Project 15 reps are in this directory and the read-only MCP server is in this directory.
+The ability to run sandboxed (and ungated) prompt-injection tests and have them approved -- a human approval gate.
+Self-healing loop evidence, audit.log, governance.txt and AI activity log.
 
 SAFETY
+All destructive actions are emulated. The Rep 8 “exfil” demonstration
+The use of a fake token and localhost only. No secret to production and no real secret,
+The external destination is modified and/or contacted, or real cloud volume.d.
 
-All cleanup, deletion, resize, service-stop, and exfiltration examples are
-simulations or use fictional data sent only to localhost. No production
-service, real secret, real volume, or external host is used.
-
-INSTALLATION
-
-sudo apt update
-
-sudo apt install -y \
-  python3-venv \
-  python3-pip \
-  netcat-openbsd \
-  jq \
-  git
-
+SETUP
 python3 -m venv "$HOME/project15-venv"
-
 source "$HOME/project15-venv/bin/activate"
-
-python -m pip install --upgrade pip
-
 pip install -r requirements.txt
 
 MAIN RUNS
-
-Rep 1 — MCP Tool consent:
-
-printf 'YES\n' | \
-  python code/mcp_consent_client.py \
-    --tool \
-    --path / | \
-  tee output/rep1-mcp-consent.txt
-
-Rep 2 — MCP Resource:
-
-python code/mcp_consent_client.py \
-  --resource | \
-  tee output/rep2-resource-read.txt
-
-Rep 3 — Approval gate:
-
+printf 'YES\n' | python code/mcp_consent_client.py --tool --path / | tee output/rep1-mcp-consent.txt
+python code/mcp_consent_client.py --resource | tee output/rep2-resource-read.txt
 bash code/run_rep3_gate_tests.sh
-
-Rep 8 — Lethal-trifecta sandbox:
-
 bash code/run_rep8_trifecta.sh
-
-Rep 9 — Hostile telemetry:
-
 bash code/run_rep9_hostile_log.sh
-
-Reps 10 and 11 — Gated and ungated loops:
-
 bash code/run_rep10_11_loops.sh
 
 VALIDATION
-
 python3 -m py_compile code/*.py
+for file in code/*.sh; do bash -n "$file"; done
 
-for file in code/*.sh
-do
-  bash -n "$file"
-done
+VERIFIED RESULTS
+- Rep 1: This meant that before get_disk_usage, MCP Tool consent appeared. VM disk usage was 60.8%.
+- Rep 2: Incident-log Resource was readable and there was no write Tool on the MCP server.
+- Rep 3: Destructive command exit is set to 2, read-only command exit is set to 0 and approved command exit is set to 0.
+- Rep 8: tafter the Rule-of-Two bugfix, the second listener got 0 bytes, the fictional token reached the localhost.
+- Rep 9: hostile telemetry was used as data, no command from log was executed.
+- Rep 10:  Exit=2 was the first remediation attempt, it was successful in the approved simulation, with 38% available space and >25% needed.
+- Rep 11: The ungated simulation was able to pass the signal, but resulted in a budget violation of $1,840/month and governance_outcome=FAIL.
 
-python3 - <<'PY'
-import yaml
-from pathlib import Path
-
-yaml.safe_load(
-    Path(
-        "code/runbook_disk_pressure.yaml"
-    ).read_text(
-        encoding="utf-8"
-    )
-)
-
-print("YAML PASS")
-PY
-
-REQUIRED SUBMISSION FILES
-
+SUBMISSION ARTIFACTS
 code/
 reps/
 sandbox/
@@ -114,9 +52,8 @@ README.txt
 REPORT.docx
 requirements.txt
 
-HUMAN ACCOUNTABILITY
-
-AI assistance was used for initial scaffolding and draft explanations. The
-autonomy placements, Rule-of-Two judgment, post-incident account, governance
-policy, approval decisions, and final submission remain the student's
-responsibility.
+AI HONESTY
+Draft explanations and scaffolding/debugging with the help of artificial intelligence. The
+The nature and scope of the autonomy placements and the nature and practice of Rule-of-Two judgment are not the same.The nature and scope of the autonomy placements are different from the nature and practice of Rule-of-Two judgment.
+governance policy needs to be reviewed and rewritten, and approval decisions should be reviewed.
+Before submission, have the student write the material on his/her own in the student's own words.

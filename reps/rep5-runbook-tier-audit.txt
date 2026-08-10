@@ -1,17 +1,13 @@
 REP 5 — RUNBOOK TIER AUDIT
 
 Change made
+It's fixed in the new runbook, I've changed clear-apt-cache from autonomy: act to autonomy:
+approve in version 4.
 
-I changed clear-apt-cache from autonomy: act in the starter to autonomy:
-approve in version 4 of the runbook.
-
-Reflection draft — paraphrase this
-
-The rotate-logs step requires approval because deleting journal records is
-irreversible even though its blast radius is limited to one host. The
-clear-apt-cache step is gated in my version because it changes state and could
-slow an emergency package reinstall or rollback; a human can approve it after
-checking the incident context. The scale-volume step is gated because it
-creates continuing cost and is difficult to reverse. For each action I asked:
-"Is it reversible?" and "What is its blast radius across availability, data,
-and cost?"
+Reflection
+rotation logs, even if it is only a delete, must be approved since there is no way to recover the records deleted from the journal.
+The gated is the clear-apt-cache utility, which is only allowed to affect one host because of its inability to communicate with multiple hosts.
+The state the change is in - could affect emergency package reinstall/rollback. scale-volume
+Needs approval as it is an ongoing expense and may be hard to undo.
+I would receive an answer of either “yes” or “no.” and then “what is the blast radius?”I would be told “yes" or “no"” and then “what is the blast radius?” to every action I would ask that I was approved for.
+Do the product manager or customer base have the option of selecting from various options for radius, data, and cost?

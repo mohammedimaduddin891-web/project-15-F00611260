@@ -1,9 +1,7 @@
 REP 6 — COST OF A MIS-TIERED ACTION
 
-Reflection draft — paraphrase these two sentences
-
-The single configuration difference was that node-7 classified the remediation
-as approve and stopped at a human gate, while node-4 misconfigured the costly
-volume resize as ACT. The diagnosis was not the failure; the autonomy policy
-allowed a correct diagnosis to trigger an excessive, ungated 2000 Gi
-provisioning decision and an additional $1,840 per month.
+The only difference in the configurations was that node-7 considered the remediation to be
+On node-4, the expensive volume was misconfigured, and approve and stopped at human gate.
+resize as ACT. It was a good diagnosis, the failure was an autonomy policy that
+Once a correct diagnosis was made, it allowed an ungated 2000 Gi provisioning action to occur and an
+additional $1,840 per month.

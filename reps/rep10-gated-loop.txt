@@ -1,24 +1,29 @@
 REP 10 — GATED CLOSED LOOP
 
 Prediction before execution
-
-I expect the loop to diagnose the disk pressure automatically, stop before the
-irreversible journal vacuum, and return exit 2 without approval. After I supply
-the exact token, I expect one simulated action followed by a fresh check of the
-free-space signal and resolution only when it exceeds 25 percent.
+I thought that the loop would on its own detect the disk pressure and stop at the point --
+Do not go back out the door without permission, in case of irreversible journal vacuum. Once I provided him with
+A simulated action is supposed to come and then a new free space check, but here that never happens.I thought it was supposed to be one simulated action, then a new check of the free space, but that's not happening here.
+Only signal & resolution if availability was more than 25 per cent.
 
 Blocked run
-
-[PASTE output/rep10-gated-blocked.txt.]
+2026-08-10T07:51:02Z PROPOSE id=rotate-logs autonomy=approve reversible=false cmd=journalctl --vacuum-size=500M
+2026-08-10T07:51:02Z GATE requesting human approval
+2026-08-10T07:51:02Z GATE BLOCKED exit=2
+blocked_exit=2
 
 Approved run
+2026-08-10T07:51:03Z APPROVE token accepted for one simulated action
+2026-08-10T07:51:03Z ACT SIMULATED journalctl --vacuum-size=500M result=freed-40.6G
+2026-08-10T07:51:03Z VERIFY signal=node_filesystem_avail_bytes avail_pct=38 expect_above=25 verdict=PASS
+2026-08-10T07:51:03Z RESOLVE incident closed human_in_loop=true
 
-[PASTE output/rep10-gated-approved.txt.]
+Audit evidence
+2026-08-10T07:51:02Z BLOCK(needs-human) :: journalctl --vacuum-size=500M
+2026-08-10T07:51:03Z ALLOW(approved) :: journalctl --vacuum-size=500M
 
-Reflection draft — paraphrase this
-
-VERIFY checks node_filesystem_avail_bytes because success means the underlying
-disk-pressure condition improved, not merely that a command returned zero. A
-vacuum command could exit successfully while freeing too little space, acting
-on the wrong journal, or leaving another directory to consume the filesystem;
-an exit-code-only loop could then close an unresolved incident.
+Reflection
+VERIFY checks node_filesystem_avail_bytes since it is successful if the original disk is available.
+The real pressure did increase - it's not that the command returned 0. A vacuum command
+may be able to exit successfully, but the release of space may be inadequate or another directory may be left.
+Consume the filesystem, so that an exit-code-only loop might close an unresolved incident.
