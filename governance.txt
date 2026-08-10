@@ -17,6 +17,7 @@ VERIFY rechecks the Service signal used under the service before resolving.
 
 It's possible that autonomous remediation might have a maximum of 100 Gi in any single incident and/or could be estimated 
 to have a cost of $100 or less per month. High-risk AI systems should have effective human oversight (EU) Regulation 2024/1689 Article 14). 
-This policy contains Annex III high-risk rules that were checked on 2026-08-10, with the current EU timeline having 
-the following low-risk rules: product embedded: 2028-08-02, Annex III: 2027-12-02. 
+As checked on 2026-08-10, the current EU timeline places Annex III high-risk
+requirements on 2027-12-02 and certain product-embedded high-risk requirements
+on 2028-08-02.
 Ultimate responsibility is with the identified human operator.
