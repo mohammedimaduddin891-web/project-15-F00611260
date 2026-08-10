@@ -1,0 +1,12 @@
+REP 2 — RESOURCE READ AND MISSING WRITE PATH
+
+Actual observation
+
+[PASTE THE TOOLS, RESOURCES, AND RESOURCE-CONTENT SUMMARY FROM
+output/rep2-resource-read.txt.]
+
+Reflection draft — paraphrase this one sentence
+
+Least privilege makes the absence of any write tool the safe default: the agent
+can inspect disk usage and incident evidence but has no capability that can
+change server state.

@@ -1,0 +1,70 @@
+# Machine-readable runbook for the fictional /var disk-pressure incident.
+
+incident: disk-pressure-/var
+
+owner: platform-oncall
+
+version: 4
+
+detect:
+  signal: node_filesystem_avail_bytes
+  mountpoint: /var
+  threshold_pct: 10
+  for: 5m
+
+diagnose:
+  - id: top-consumers
+
+    cmd: >-
+      du -x -d1 /var 2>/dev/null |
+      sort -rh |
+      head -n 5
+
+    autonomy: act
+
+    blast_radius: none
+
+    reversible: true
+
+remediate:
+  - id: rotate-logs
+
+    cmd: >-
+      journalctl --vacuum-size=500M
+
+    autonomy: approve
+
+    blast_radius: low
+
+    reversible: false
+
+  - id: clear-apt-cache
+
+    cmd: >-
+      apt-get clean
+
+    autonomy: approve
+
+    blast_radius: low
+
+    reversible: true
+
+  - id: scale-volume
+
+    cmd: >-
+      resize-pvc data-var --to 200Gi
+
+    autonomy: approve
+
+    blast_radius: medium
+
+    reversible: false
+
+verify:
+  signal: node_filesystem_avail_bytes
+
+  mountpoint: /var
+
+  expect_pct_above: 25
+
+  rollback_if_unmet: page-human

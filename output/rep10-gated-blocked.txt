@@ -1,0 +1,8 @@
+2026-08-10T07:51:02Z EVENT DiskPressure mount=/var avail_pct=9 sustained=5m
+2026-08-10T07:51:02Z DIAGNOSE autonomy=act cmd=du -x -d1 /var 2>/dev/null | sort -rh | head -n 5
+2026-08-10T07:51:02Z FINDING /var/log/journal=41G /var/lib/docker=18G /var/cache/apt=6G
+2026-08-10T07:51:02Z HYPOTHESIS journald rotation disabled; log volume dominates /var
+2026-08-10T07:51:02Z PROPOSE id=rotate-logs autonomy=approve reversible=false cmd=journalctl --vacuum-size=500M
+2026-08-10T07:51:02Z GATE requesting human approval
+2026-08-10T07:51:02Z GATE BLOCKED exit=2
+blocked_exit=2

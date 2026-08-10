@@ -1,0 +1,11 @@
+[08/06/26 15:11:57] INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+                    INFO     Processing request of type            server.py:733
+                             ListResourcesRequest                               
+TOOLS: ['get_disk_usage']
+RESOURCES: ['file://incident-log/']
+CONSENT REQUIRED BEFORE TOOL INVOCATION
+Type YES to allow get_disk_usage:                     INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+CONSENT GRANTED
+TOOL RESULT: {'path': '/', 'total': 47321268224, 'used': 28767379456, 'free': 18537111552, 'used_pct': 60.8}

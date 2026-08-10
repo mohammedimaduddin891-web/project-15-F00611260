@@ -1,0 +1,37 @@
+PROJECT 15 — AUTONOMY GOVERNANCE POLICY
+
+Service:
+School-policy RAG API on the Oracle lab VM
+
+Policy checked:
+2026-08-06
+
+The service uses action-specific autonomy instead of one global autonomous
+mode. Reading disk usage, listing large directories, reading application logs,
+and checking the health endpoint are ACT-tier operations because they are
+read-only and have negligible blast radius. Restarting the RAG API, vacuuming
+journald, clearing a package cache, or applying a reversible configuration
+rollback are APPROVE-tier operations. The current platform on-call engineer
+must approve each action before execution. Stopping nginx, deleting a volume,
+changing firewall policy, rotating production credentials, or creating
+recurring cloud cost are SUGGEST-tier decisions requiring a reviewed change
+record. The agent may propose those actions but may not independently execute
+them.
+
+The tool set follows the Rule of Two. An unsupervised agent may process
+untrusted logs and read narrowly scoped operational data, but it receives no
+arbitrary outbound HTTP, email, or public-write tool. A task requiring
+untrusted input, private access, and external communication must cross a human
+gate with a destination allowlist.
+
+Every proposal, block, approval, action, verification result, identity, and
+UTC timestamp is appended to audit.log. The agent may append records but may
+not rewrite previous entries. Approval tokens are valid for one action and
+fifteen minutes. VERIFY rechecks the underlying metric before resolution.
+
+Autonomous remediation may not provision more than 100 Gi in one incident or
+create more than $100 of estimated monthly cost. EU AI Act Article 14 requires
+effective human oversight for high-risk AI systems; this principle was
+rechecked on 2026-08-06. As of that date, Annex III high-risk rules apply from
+2027-12-02 and Annex I product-related rules apply from 2028-08-02. Final
+accountability remains with the named human operator, not the agent.

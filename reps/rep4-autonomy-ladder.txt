@@ -1,0 +1,36 @@
+REP 4 — AUTONOMY LADDER
+
+Action                                      Tier       Justification
+--------------------------------------------------------------------------------
+du -x -d1 /var | sort -rh                   ACT        Read-only, no state change,
+                                                        and limited blast radius.
+
+kubectl rollout restart deploy/api          APPROVE    State-changing and usually
+                                                        reversible, but it can cause
+                                                        availability impact.
+
+journalctl --vacuum-size=500M                APPROVE    Deletes logs permanently even
+                                                        though the host blast radius is
+                                                        low.
+
+resize-pvc data-var --to 500Gi               APPROVE    Changes infrastructure cost and
+                                                        may be difficult to reverse.
+
+systemctl stop nginx                         SUGGEST    Directly removes service
+                                                        availability; a human should
+                                                        decide and perform or explicitly
+                                                        approve it under a change record.
+
+apt-get clean                                APPROVE    Cache removal is recoverable, but
+                                                        it changes state and can affect
+                                                        later package installation during
+                                                        an incident.
+
+Reflection draft — paraphrase this
+
+I used the same two questions for every action: whether the action is reversible
+and how large its blast radius is. A teammate might place apt-get clean at ACT
+because its effect is reversible when packages are downloaded again. I keep it
+at APPROVE in this runbook because automatic cache deletion during an incident
+could delay an urgent rollback or package reinstall, while the cost of waiting
+for approval is small.

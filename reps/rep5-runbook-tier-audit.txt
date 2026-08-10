@@ -1,0 +1,17 @@
+REP 5 — RUNBOOK TIER AUDIT
+
+Change made
+
+I changed clear-apt-cache from autonomy: act in the starter to autonomy:
+approve in version 4 of the runbook.
+
+Reflection draft — paraphrase this
+
+The rotate-logs step requires approval because deleting journal records is
+irreversible even though its blast radius is limited to one host. The
+clear-apt-cache step is gated in my version because it changes state and could
+slow an emergency package reinstall or rollback; a human can approve it after
+checking the incident context. The scale-volume step is gated because it
+creates continuing cost and is difficult to reverse. For each action I asked:
+"Is it reversible?" and "What is its blast radius across availability, data,
+and cost?"

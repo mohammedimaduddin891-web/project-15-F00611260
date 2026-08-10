@@ -1,0 +1,19 @@
+REP 11 — POST-INCIDENT ACCOUNT
+
+This section is a personal accountability judgment. Rewrite it fully in your
+own voice before submission.
+
+I am accountable for allowing the fictional disk-remediation workflow to resize
+the data volume to 2000 Gi without human approval. The diagnosis of low free
+space was correct, but I accepted an autonomy policy that treated a costly
+infrastructure change as an unattended ACT action. The alert cleared, yet the
+workflow created an unplanned $1,840 monthly expense, so the overall outcome
+was a governance failure. I will require the approval gate for storage
+provisioning, deletion, service-stop, and irreversible cleanup actions. The
+current platform on-call engineer must approve one named action, and the token
+will expire after fifteen minutes. I will also enforce a maximum autonomous
+storage increase of 100 Gi per incident and a $100 estimated monthly cost cap;
+anything above either limit will stop and page a human. The runbook will state:
+"An agent must never resize a volume or create recurring cost without named
+human approval recorded in audit.log." I will test the block, approval, and
+budget paths before enabling the workflow.

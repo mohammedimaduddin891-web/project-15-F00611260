@@ -1,0 +1,25 @@
+REP 7 — LETHAL TRIFECTA AND OWASP MAP
+
+Lethal-trifecta leg       Course OWASP LLM (2025) ID       Ops mitigation
+--------------------------------------------------------------------------------
+Untrusted content         LLM01 Prompt Injection           Treat logs, tickets,
+                                                            webpages, and tool
+                                                            descriptions as
+                                                            untrusted input.
+
+Private-data access       LLM02 Sensitive Info             Restrict readable paths,
+                          Disclosure                        secrets, tenants, and
+                                                            credentials by least
+                                                            privilege.
+
+Exfiltration vector       LLM06 Excessive Agency           Remove arbitrary outbound
+                                                            communication or gate it
+                                                            behind human approval.
+
+Reflection draft — paraphrase this
+
+For an SRE agent, removing arbitrary outbound communication is usually the
+cheapest way to break the trifecta. The agent can still read telemetry and
+private operational data for diagnosis, but a hidden instruction cannot send
+that data to an attacker unless an approved, destination-restricted outbound
+tool exists.

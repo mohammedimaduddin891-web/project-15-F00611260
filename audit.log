@@ -1,0 +1,5 @@
+2026-08-06T15:14:56Z BLOCK(needs-human) :: kubectl delete pvc data-var
+2026-08-06T15:14:56Z ALLOW(policy-safe) :: du -x -d1 /var
+2026-08-06T15:14:56Z ALLOW(approved) :: kubectl delete pvc data-var
+2026-08-10T07:51:02Z BLOCK(needs-human) :: journalctl --vacuum-size=500M
+2026-08-10T07:51:03Z ALLOW(approved) :: journalctl --vacuum-size=500M

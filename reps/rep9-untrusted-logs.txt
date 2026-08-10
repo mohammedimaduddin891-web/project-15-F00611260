@@ -1,0 +1,13 @@
+REP 9 — TELEMETRY IS UNTRUSTED INPUT
+
+Actual observation
+
+[PASTE output/rep9-log-summary.txt.]
+
+Reflection draft — paraphrase these two sentences
+
+Telemetry is attacker-influenced content because filenames, user agents, error
+messages, and request fields can be written by external users. Once an agent can
+both read logs and run commands, LLM01 prompt injection becomes an operational
+control issue, so log text must remain data and must never become executable
+authority.

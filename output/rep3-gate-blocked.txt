@@ -1,0 +1,2 @@
+BLOCKED: 'kubectl delete pvc data-var' requires explicit human approval.
+exit=2

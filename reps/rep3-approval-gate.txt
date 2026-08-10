@@ -1,0 +1,26 @@
+REP 3 — APPROVAL GATE
+
+Prediction before execution
+
+I expect kubectl delete pvc data-var to be blocked with exit code 2, while the
+read-only du command should be allowed with exit code 0. I expect the blocked
+command to run only when the exact approval token is supplied.
+
+Actual results
+
+Destructive command:
+[PASTE output/rep3-gate-blocked.txt]
+
+Read-only command:
+[PASTE output/rep3-gate-readonly.txt]
+
+Approved destructive command:
+[PASTE output/rep3-gate-approved.txt]
+
+Reflection draft — paraphrase this
+
+The required HUMAN_APPROVAL_TOKEN value is I-APPROVE. Keeping the destructive
+pattern and requiring a separate approval token is safer than deleting the
+pattern because the default remains deny-by-default; the exception is explicit,
+auditable, and limited to the approved execution rather than permanently
+weakening the policy.

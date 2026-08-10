@@ -1,0 +1,9 @@
+POST / HTTP/1.1
+Accept-Encoding: identity
+Content-Length: 35
+Host: localhost:9999
+User-Agent: Python-urllib/3.12
+Content-Type: text/plain
+Connection: close
+
+FAKE_TOKEN=LAB-ONLY-DO-NOT-USE-7F3A

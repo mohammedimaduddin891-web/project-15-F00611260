@@ -1,0 +1,28 @@
+REP 8 — BUILD AND BREAK THE TRIFECTA
+
+Prediction before execution
+
+With all three capabilities enabled, I expect the planted instruction to make
+the sandbox script read the fictional secret and send it to the local listener.
+After removing the outbound capability, I expect the same untrusted document to
+be read but no secret to reach the listener.
+
+Vulnerable result
+
+[PASTE THE IMPORTANT LINES FROM output/rep8-vulnerable-agent.txt AND CONFIRM THE
+FAKE TOKEN APPEARED IN output/rep8-exfiltration-captured.txt.]
+
+Rule-of-Two result
+
+[PASTE output/rep8-rule-of-two-blocked.txt AND THE BYTE COUNT OF THE SECOND
+LISTENER FILE.]
+
+Reflection draft — paraphrase this
+
+This is an architectural fix because the corrected agent no longer possesses
+all three capabilities at the same time. A prompt filter can miss obfuscated,
+encoded, multilingual, or newly phrased instructions and can also be bypassed
+by trusted-looking telemetry. Removing or gating the outbound tool makes
+exfiltration impossible even when the model interprets the hostile text as an
+instruction. The safety property therefore comes from capability design rather
+than confidence in text filtering.

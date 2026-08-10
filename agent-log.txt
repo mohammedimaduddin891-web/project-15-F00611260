@@ -1,0 +1,115 @@
+Project 15 — Agent Activity Log
+
+Student:
+Mohammed Imad Uddin
+
+Student ID:
+F00611260
+
+
+1. Assignment review
+
+Delegated task:
+
+I asked the AI assistant to review Chapter 15, the assignment, and the four
+starter files.
+
+Agent output:
+
+The assistant identified eleven required reps, audit.log, governance.txt,
+agent-log.txt, REPORT.docx, runnable output, and the requirement that all
+dangerous work remain inside a sandbox.
+
+Human intervention:
+
+I retained the Normal-tier scope and reviewed every command before execution.
+
+
+2. MCP and approval gate
+
+Delegated task:
+
+I asked the assistant to draft a small MCP consent client and adapt the
+approval hook so approve-tier metadata also activates the gate.
+
+Human verification:
+
+I invoked the read-only disk Tool only after consent, read the incident-log
+Resource, and verified that the MCP server had no write Tool. I also confirmed
+exit code 2 for an unapproved destructive command and exit code 0 for a
+read-only or explicitly approved action.
+
+Actual results:
+
+[INSERT THE FINAL REP 1, REP 2, AND REP 3 RESULTS.]
+
+
+3. Autonomy and runbook review
+
+Delegated task:
+
+The assistant proposed tier placements using reversibility and blast radius.
+
+Human intervention:
+
+I made the final tier decisions. I changed apt-get clean from ACT to APPROVE
+because automatic cache deletion could interfere with an urgent rollback or
+package reinstall even though its effect is recoverable.
+
+
+4. Lethal-trifecta sandbox
+
+Delegated task:
+
+The assistant drafted a localhost-only example using a fictional secret, an
+untrusted local document, and a local listener.
+
+Human verification:
+
+I confirmed that the fictional value reached localhost when all three
+capabilities were present. I then removed the outbound capability and
+confirmed the second listener received zero bytes.
+
+Actual result:
+
+[INSERT THE REP 8 RESULTS.]
+
+
+5. Hostile telemetry
+
+Delegated task:
+
+The assistant drafted a read-only log summarizer.
+
+Human verification:
+
+I added the hostile filename to a copied log and verified that the content was
+reported as untrusted data. No command was executed from the log.
+
+
+6. Closed-loop simulation
+
+Delegated task:
+
+The assistant drafted a safe event, diagnose, propose, gate, act, verify, and
+resolve simulator.
+
+Human verification:
+
+I confirmed that the first gated run stopped before the simulated journal
+vacuum. The approved run continued only with I-APPROVE and resolved only after
+the underlying available-space signal exceeded 25 percent. I also ran the
+ungated 2000 Gi volume-resize simulation and recorded the $1,840 monthly
+budget violation.
+
+Actual result:
+
+[INSERT THE REP 10 AND REP 11 RESULTS.]
+
+
+7. Human-owned judgments
+
+I personally reviewed and will paraphrase the autonomy table, the runbook-tier
+decision, the Rule-of-Two analysis, the post-incident account, and the
+governance policy. The AI did not approve a production action, accept risk,
+perform a legal classification, or sign on my behalf.

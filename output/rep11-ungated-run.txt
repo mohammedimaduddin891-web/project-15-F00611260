@@ -1,0 +1,7 @@
+2026-08-10T07:51:03Z EVENT DiskPressure mount=/var avail_pct=9 sustained=5m
+2026-08-10T07:51:03Z DIAGNOSE finding=low-disk-space diagnosis=correct
+2026-08-10T07:51:03Z PROPOSE id=scale-volume autonomy=ACT(misconfigured) cmd=resize-pvc data-var --to 2000Gi
+2026-08-10T07:51:03Z ACT SIMULATED resize-pvc data-var --to 2000Gi command_exit=0
+2026-08-10T07:51:03Z VERIFY signal=node_filesystem_avail_bytes avail_pct=65 expect_above=25 verdict=PASS
+2026-08-10T07:51:03Z FINOPS budget_violation=true unplanned_storage_spend_usd_per_month=1840
+2026-08-10T07:51:03Z RESOLVE technical_signal_cleared=true governance_outcome=FAIL

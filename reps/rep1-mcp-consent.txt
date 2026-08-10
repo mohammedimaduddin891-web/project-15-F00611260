@@ -1,0 +1,20 @@
+REP 1 — MCP CONSENT PROMPT
+
+Prediction before execution
+
+I expect the host/client to list one read-only tool named get_disk_usage and to
+pause for my consent before invoking it. If I deny consent, the tool should not
+run.
+
+Actual observation
+
+[PASTE THE IMPORTANT LINES FROM output/rep1-mcp-consent.txt AFTER RUNNING IT.]
+
+Reflection draft — paraphrase this
+
+The MCP tools guidance says a human should remain able to deny tool
+invocations, and clients should request confirmation for sensitive operations.
+The consent prompt is implemented by the host before it calls get_disk_usage.
+Tool descriptions and annotations from an untrusted server are treated as
+untrusted because a malicious description could contain prompt-injection text
+intended to influence the model or the user.

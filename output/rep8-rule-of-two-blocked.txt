@@ -1,0 +1,4 @@
+UNTRUSTED CONTENT READ
+OUTBOUND CAPABILITY: REMOVED
+RULE OF TWO BLOCK: secret was not read or transmitted
+rule_of_two_listener_bytes=0
