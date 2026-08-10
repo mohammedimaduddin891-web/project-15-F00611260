@@ -53,7 +53,7 @@ REPORT.docx
 requirements.txt
 
 AI HONESTY
-Draft explanations and scaffolding/debugging with the help of artificial intelligence. The
-The nature and scope of the autonomy placements and the nature and practice of Rule-of-Two judgment are not the same.The nature and scope of the autonomy placements are different from the nature and practice of Rule-of-Two judgment.
-governance policy needs to be reviewed and rewritten, and approval decisions should be reviewed.
-Before submission, have the student write the material on his/her own in the student's own words.
+AI assistance was used for scaffolding, debugging, and draft explanations.
+I reviewed the commands and actual outputs myself. The autonomy placements,
+Rule-of-Two judgment, governance policy, post-incident account, approval
+decisions, and final submission remain my responsibility.
