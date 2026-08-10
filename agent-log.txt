@@ -9,14 +9,13 @@ and write supporting code to be used in a sandbox. I checked the commands prior 
 All examples which change the state of the system were simulated.
 
 2. MCP setup and correction
-The first Rep 1 attempt was unsuccessful yielding the following error:
-This is not a problem with the module itself, but is an indication that you don't have the package installed.
+The first Rep 1 run failed with:
+ModuleNotFoundError: No module named 'mcp.server.fastmcp'
 
-The unpinned install had introduced MCP Python SDK 2.x whilst the supplied starter was included in the previous 1.x version.
-Used the FastMCP API of the MCP 1.x. I fixed the requirements.txt file to:
-mcp[cli]>=1.28,<2
-PyYAML>=6.0,<7
-The re-installed dependency and the test for the MCP client/server was successful.
+I found that the unpinned installation had installed MCP Python SDK 2.x while
+the supplied starter used the MCP 1.x FastMCP API. I pinned the dependency to
+mcp[cli]>=1.28,<2, reinstalled it, and successfully reran the MCP client/server
+test.
 
 Actual Rep 1 result:
 TOOLS: ['get_disk_usage']
